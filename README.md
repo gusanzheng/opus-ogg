@@ -15,9 +15,6 @@
 - 输入：24kHz-16-mono-pcm 
 - 输出: opus
 
-TODO
-1. 规范错误码
-
 ```text
 encoding: opus
 channels: 1
@@ -26,17 +23,21 @@ frameSize: 480 (20ms@24kHz)
 bitRate: 48kbps
 ```
 
+TODO
+1. 规范错误码
+
+
 ### 文件夹 opus
 - 支持pcm、裸opus音频数据的编解码。
 
-## 文件夹 opus-codec
+### 文件夹 opus-codec
 - 采用自定义封装，每个opus数据帧前2字节，按照大端序写了该数据帧的长度。
 - 仅实现了编码操作。
 
-## 文件夹 opus-codec-dlopen
+### 文件夹 opus-codec-dlopen
 - 使用 `dlopen` 动态打开动态库。
 
-## 文件夹 opus-ogg-codec
+### 文件夹 opus-ogg-codec
 - 采用 ogg 开源封装格式
 - 支持 pcm、opus-ogg 的音频数据的编解码。
 
