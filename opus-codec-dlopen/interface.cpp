@@ -59,9 +59,12 @@ extern "C"
             return ret;
         }
         *outputLen = outputVec.size();
-        *output = new char[*outputLen]; // 注意: 外层go一定要注意释放内存
+        *output = (char *)malloc(*outputLen); // 使用 malloc, 外层go一定要注意 free 内存
+        if (*output == nullptr)
+        {
+            return -1;
+        }
         std::memcpy(*output, outputVec.data(), *outputLen);
-
         return 0;
     }
 
