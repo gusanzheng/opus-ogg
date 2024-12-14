@@ -1,43 +1,29 @@
 # opus-ogg
 > Data: 2024/11/10
 
-关键点
-1. 使用`C/C++`封装的opus-ogg音频编解码库，可直接用于`C/C++`项目。
-2. 使用`Cgo`提供`Golang`接口，方便接入`Golang`项目。
+## 简介
+- 采用opus开源库对pcm原始音频进行编解码操作。
+- 两种封装方式
+  - 自定义封装，每个opus数据帧前2字节，按照大端序写了该opus数据帧的长度。
+  - ogg开源库进行封装。
+- 操作系统: Linux
 
-操作系统: Linux
-
-开源库版本
+## 文件夹指路
+### doc
+- opus，ogg知识参考文档
+### lib 依赖库
 - opus: 1.5.2
 - ogg: 1.3.5
+### cpp
+- cpp 版本
+- cpp/opus: opus编解码操作，采用自定义封装
+- cpp/opus-ogg: opus编解码操作，采用ogg封装
 
-编码
-- 输入：24kHz-16-mono-pcm 
-- 输出: opus
+### golang-cgo
+- golang版本，通过cgo调用c动态库
+- golang-cgo/opus: opus编解码操作，采用自定义封装
+- golang-cgo/opus-dlopen: opus编解码操作，采用自定义封装，c通过dlopen引入第三方库
+- golang-cgo/opus-ogg: opus编解码操作，采用ogg封装
 
-```text
-encoding: opus
-channels: 1
-sampleRage: 24000
-frameSize: 480 (20ms@24kHz)
-bitRate: 48kbps
-```
-
-TODO
+## TODO
 1. 规范错误码
-
-### 文件夹 opus-codec
-- 采用自定义封装，每个opus数据帧前2字节，按照大端序写了该数据帧的长度。
-- 仅实现了编码操作。
-
-### 文件夹 opus-codec-dlopen
-- 使用 `dlopen` 动态打开动态库。
-
-### 文件夹 opus-ogg-codec
-- 采用 ogg 开源封装格式
-- 支持 pcm、opus-ogg 的音频数据的编解码。
-
-
-
-
-

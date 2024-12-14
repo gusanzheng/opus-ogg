@@ -1,1 +1,0 @@
-g++ -std=c++11 -g -o main main.cpp encoder.cpp decoder.cpp -I ./ -I /usr/local/include/opus -lopus -logg
